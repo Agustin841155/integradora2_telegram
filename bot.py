@@ -55,29 +55,29 @@ def getImagen(bot, update):
         message="Reconociendo basura..."
         update.message.reply_text(message)                   
         imagenfile={"myfile":open(filename,'rb')}
-        resultado = requests.post("-------------------------------------", files=imagenfile)
+        resultado = requests.post("https://8080-amethyst-parrotfish-cy3a69rg.ws-us14.gitpod.io/imagen", files=imagenfile)
         update.message.reply_text(resultado.text)
         
     except Exception as error:
-        print("Error 005 {}".format(e.args[0]))
+        print("Error 005 {}".format(error.args[0]))
     
 
-def identificar(bot,filename):
+def identificar(bot,filename, update):
     try:
         message="Identificando..."
         update.message.reply_text(message)       
         imagenes= {'myfile':filename}
         
-        resultado = requests.post("-------------------------", myfile=imagenes)
-        billete=resultado.json()
-        items=billete[list(billete.keys())[0]]
+        resultado = requests.post("https://8080-amethyst-parrotfish-cy3a69rg.ws-us14.gitpod.io/imagen", myfile=imagenes)
+        basura=resultado.json()
+        items=basura[list(basura.keys())[0]]
         for i in items:
             descripcion= i["Respuesta"]
         message=descripcion
         update.message.reply_text(message)
     
     except Exception as error:
-        print("Error 0 {}".format(e.args[0]))
+        print("Error 0 {}".format(error.args[0]))
         
 def main():
     try:
@@ -101,4 +101,4 @@ if __name__=="__main__":
     try:
         main()
     except Exception as error:
-        print("Error 011 {}".format(e.args[0]))
+        print("Error 011 {}".format(error.args[0]))
